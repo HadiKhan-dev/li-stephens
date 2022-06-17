@@ -1,0 +1,1 @@
+This is a crate implementing the Li and Stephens model of the relationship between DNA sequences in a population. While it does not have generative capabilities yet, it does have the ability to predict the liklihood of a new DNA sequence having been taken from a reference population.
