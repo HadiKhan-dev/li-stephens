@@ -1,1 +1,1 @@
-window.ALL_CRATES = ["li_stephens","listephens","matrixmultiply","ndarray","num_complex","num_integer","num_traits","rawpointer"];
+window.ALL_CRATES = ["li_stephens","matrixmultiply","ndarray","num_complex","num_integer","num_traits","rawpointer"];

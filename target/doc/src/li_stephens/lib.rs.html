@@ -124,9 +124,6 @@
 <span id="119">119</span>
 <span id="120">120</span>
 <span id="121">121</span>
-<span id="122">122</span>
-<span id="123">123</span>
-<span id="124">124</span>
 </pre><pre class="rust"><code><span class="kw">use</span> <span class="ident">ndarray</span>::{<span class="ident">Array1</span>,<span class="ident">Array2</span>,<span class="ident">Axis</span>};
 <span class="kw">use</span> <span class="ident">std::cmp</span>;
 
@@ -150,7 +147,7 @@
     <span class="ident">max_val</span> <span class="op">=</span> <span class="ident">cmp::max</span>(<span class="ident">max_val</span>,<span class="ident">test_haplotype</span>.<span class="ident">len</span>());
 
 
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">new_test_array</span> <span class="op">=</span> <span class="ident">test_haplotype</span>.<span class="ident">as_slice</span>().<span class="ident">unwrap</span>();
+    <span class="kw">let</span> <span class="ident">new_test_array</span> <span class="op">=</span> <span class="ident">test_haplotype</span>.<span class="ident">as_slice</span>().<span class="ident">unwrap</span>();
 
     <span class="kw">for</span> <span class="ident">i</span> <span class="kw">in</span> <span class="number">0</span>..<span class="ident">new_test_array</span>.<span class="ident">len</span>()<span class="op">-</span><span class="number">1</span> {
         <span class="kw">if</span> <span class="op">!</span><span class="ident">is_base</span>(<span class="ident">new_test_array</span>[<span class="ident">i</span>]) {
@@ -171,7 +168,7 @@
 
     <span class="kw">let</span> <span class="ident">char_array</span> <span class="op">=</span> <span class="ident">haplotypes</span>;
 
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">test_array</span> <span class="op">=</span> <span class="ident">test_haplotype</span>;
+    <span class="kw">let</span> <span class="ident">test_array</span> <span class="op">=</span> <span class="ident">test_haplotype</span>;
 
     <span class="kw">for</span> <span class="ident">idx</span> <span class="kw">in</span> <span class="number">0</span>..<span class="ident">max_val</span> {
         <span class="kw">for</span> <span class="ident">inner_idx</span> <span class="kw">in</span> <span class="number">0</span>..<span class="ident">haplotypes</span>.<span class="ident">len_of</span>(<span class="ident">Axis</span>(<span class="number">0</span>)) {
@@ -182,7 +179,7 @@
                     <span class="ident">transition</span> <span class="op">+</span><span class="op">=</span> (<span class="ident">recombination_prob</span><span class="op">/</span>(<span class="ident">haplotypes</span>.<span class="ident">len</span>() <span class="kw">as</span> <span class="ident">f64</span>))<span class="kw-2">*</span><span class="ident">prob_array</span>[[<span class="ident">inner_idx2</span>,<span class="ident">idx</span><span class="op">-</span><span class="number">1</span>]];
                 }
             }
-            <span class="kw">let</span> <span class="ident">emission</span> <span class="op">=</span> <span class="kw">if</span> (<span class="ident">test_array</span>[<span class="ident">idx</span>] <span class="op">==</span> <span class="string">&#39;N&#39;</span> <span class="op">|</span><span class="op">|</span> <span class="ident">char_array</span>[[<span class="ident">inner_idx</span>,<span class="ident">idx</span>]] <span class="op">==</span> <span class="string">&#39;N&#39;</span>) {
+            <span class="kw">let</span> <span class="ident">emission</span> <span class="op">=</span> <span class="kw">if</span> <span class="ident">test_array</span>[<span class="ident">idx</span>] <span class="op">==</span> <span class="string">&#39;N&#39;</span> <span class="op">|</span><span class="op">|</span> <span class="ident">char_array</span>[[<span class="ident">inner_idx</span>,<span class="ident">idx</span>]] <span class="op">==</span> <span class="string">&#39;N&#39;</span> {
                 <span class="number">1.0</span>
             } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">test_array</span>[<span class="ident">idx</span>] <span class="op">==</span> <span class="ident">char_array</span>[[<span class="ident">inner_idx</span>,<span class="ident">idx</span>]] {
                 <span class="number">1.0</span><span class="op">-</span><span class="ident">mutation_prob</span>
@@ -200,9 +197,6 @@
                 <span class="ident">ret_val</span> <span class="op">=</span> <span class="ident">prob_array</span>[[<span class="ident">final_index</span>,<span class="ident">max_val</span><span class="op">-</span><span class="number">1</span>]];
             }
     }
-
-    <span class="macro">println!</span>(<span class="string">&quot;{}&quot;</span>,<span class="ident">prob_array</span>);
-
 
     <span class="kw">return</span> <span class="ident">ret_val</span>;
 
@@ -235,7 +229,7 @@
 
     <span class="kw">for</span> <span class="ident">x</span> <span class="kw">in</span> <span class="ident">haplotypes</span> {
         <span class="kw">for</span> <span class="ident">idx</span> <span class="kw">in</span> <span class="number">0</span>..(<span class="ident">x</span>.<span class="ident">len</span>()) {
-            <span class="ident">char_array</span>[[<span class="ident">cur_index</span>,<span class="ident">idx</span>]] <span class="op">=</span> <span class="ident">x</span>.<span class="ident">as_bytes</span>()[<span class="ident">idx</span>] <span class="kw">as</span> <span class="ident">char</span>;
+            <span class="ident">char_array</span>[[<span class="ident">cur_index</span>,<span class="ident">idx</span>]] <span class="op">=</span> (<span class="ident">x</span>.<span class="ident">as_bytes</span>()[<span class="ident">idx</span>] <span class="kw">as</span> <span class="ident">char</span>).<span class="ident">to_ascii_uppercase</span>();
         }
         <span class="ident">cur_index</span> <span class="op">+</span><span class="op">=</span> <span class="number">1</span>;
     }

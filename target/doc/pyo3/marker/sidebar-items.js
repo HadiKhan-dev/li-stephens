@@ -1,1 +1,0 @@
-initSidebarItems({"struct":[["Python","A marker token that represents holding the GIL."]],"trait":[["Ungil","Types that are safe to access while the GIL is not held."]]});
